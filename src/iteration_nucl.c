@@ -1,4 +1,3 @@
-
 /* this is the program "iteration_nucl.c" */
 
 /* the difference with respect to "iteration.c" is that here we
@@ -9,7 +8,7 @@
 
 extern void rforce(), force(), update();
 
-void iteration(){  
+void iteration(){
 
   int i;
 
@@ -22,7 +21,7 @@ void iteration(){
       d_Amino[i].y = (h * Amino[i].fcy)/zetai;
       d_Amino[i].z = (h * Amino[i].fcz)/zetai;
     }
-    
+
     /* all the other positions can move individually */
     else {
 
@@ -34,7 +33,7 @@ void iteration(){
     /* change of position for each bead at each time step due to the action of force */
     Amino[i].x = Amino[i].x + d_Amino[i].x;
     Amino[i].y = Amino[i].y + d_Amino[i].y;
-    Amino[i].z = Amino[i].z + d_Amino[i].z;    
+    Amino[i].z = Amino[i].z + d_Amino[i].z;
 
 #ifdef DEBUG
 
@@ -47,23 +46,21 @@ void iteration(){
 #endif
 
   }
-  
+
   rforce();
 
   force();
 
-  
+
   /* after each "nav" number of steps, increase the value of "xt" (i.e., the external force is ramped up
      each "nav" number of steps) */
   if(stepx == nav){
 
     xt = xt + deltax;
     stepx = 0;
-  
+
   }
 
   update();
 
 }
-
-

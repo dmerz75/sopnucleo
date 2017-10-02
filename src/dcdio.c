@@ -64,9 +64,10 @@ FILE* dcd_open_write(char *dcd_filename){
  *  69          4               '4'
  *
  */
-void dcd_write_header(FILE* dcd_file, char *dcd_filename, int N, int NFILE, int NPRIV, int NSAVC, double DELTA){
-
-  int iout, i;
+void dcd_write_header(FILE* dcd_file, char *dcd_filename, int N, int NFILE,
+                      int NPRIV, int NSAVC, double DELTA)
+{
+    int iout, i;
     float fout;
     char cout[4];
 

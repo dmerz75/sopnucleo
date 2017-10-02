@@ -5,16 +5,21 @@
 
 #include "structure.h"
 
-/* #define stepsim1 /\*1000000*\/  1000000 /\* 100 *\/ /\* 1000 number of simulation steps for heating under zero applied force *\/ */
-/* #define stepsim2 /\*100000000*\/ 6000000000 /\* 1000 *\/ /\* 10000 LJY  can change criteria in main_*.c *\/ */
-/* #define nav      /\*100*\/  1000   /\*10000*\/    /\* frequency to get information about chain conformation *\/ */
-
-#define stepsim1 10000
-#define stepsim2 30000
-#define nav      100
-
+/* Simulation */
+#define stepsim1 /*1000000*/  1000000 /* 100 */ /* 1000 number of simulation steps for heating under zero applied force */
+#define stepsim2 /*100000000*/ 6000000000 /* 1000 */ /* 10000 LJY  can change criteria in main_*.c */
+#define nav      /*100*/  1000   /*10000*/    /* frequency to get information about chain conformation */
 #define nav1     /*nav*/  (10*nav)  /*(100*nav)*/  /* frequency to save chain conformation: 2nd for nav=1000;1st and 3rd for nav=10000 */
-#define nav_dcd (100*nav) /* frequency to write the chain conformation in dcd format */ 
+#define nav_dcd (100*nav) /* frequency to write the chain conformation in dcd format */
+
+/* Testing */
+/* #define stepsim1 10000 */
+/* #define stepsim2 30000 */
+/* #define nav      100 */
+/* #define nav1     /\*nav*\/  nav  /\*(100*nav)*\/  /\* frequency to save chain conformation: 2nd for nav=1000;1st and 3rd for nav=10000 *\/ */
+/* #define nav_dcd (1*nav) /\* frequency to write the chain conformation in dcd format *\/ */
+
+
 #define temp     0.6     /* temperature (in units of (eh/kB)); 0.6 kcal/mol = 300 K */
 #define zeta     50.0    /* (zeta*(1/tau_L)*(eh/temp) sets the natural time for the overdamped motion */
 #define h        /*0.16*/ 0.08 /*0.02*/   /* integration step */
@@ -56,7 +61,7 @@
 #define eli       0.1  /*1.0*/     /* energy scale for purely repulsive LJ pot. */
 #define zetai     80.0 /* (zeta*(1/tau_L)*(eh/temp) sets the natural time for the overdamped motion */
 
-#define numf      601  /* total number of residues in the protein */
+#define numf      657  /* total number of residues in the protein */
 #define rigid       2  /* 0=rigid and static nucleotide; 1=normal nucleotide; 2=CM nucleotide (rigid but CM moves) */
 /* LJY20100318 end  */
 
@@ -75,6 +80,7 @@ struct coord c;
 
 int    tot_amino;
 int    **connect, **link, **connect_old;
+double **connect_eh;
 /* int    mseed, step, NC0, NC; */
 int    mseed, NC0, NC;
 unsigned int    step;
@@ -90,5 +96,5 @@ double r38, r201, r240;
 int    no_contact, heat;
 double epot_fene, epot_LJ, tempav, epot_LJ_att, epot_LJ_nei, epot_LJ_rep;
 
-int    SSbond_nr; /* # disulfide bonds in structure */ 
+int    SSbond_nr; /* # disulfide bonds in structure */
 sec_struct     *SSbond;

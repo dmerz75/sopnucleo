@@ -1,7 +1,9 @@
 CC = gcc
+# CPP= g++
 CFDEV = -g -O2
 
-# CF = -ansi -std=gnu99 -pedantic -Wshadow -Wcast-qual -Wwrite-strings -g -O3
+CF = -ansi -std=gnu99 -pedantic -Wshadow -Wcast-qual -Wwrite-strings -g -O2
+CFF = -g -O3
 CFLAGS   = -ansi -std=gnu99
 CFLAGS_1 = -ansi -pedantic -std=gnu99 -Wall -W
 CFLAGS_2 = -Wconversion -Wshadow -Wcast-qual -Wwrite-strings -g -O2
@@ -44,10 +46,19 @@ m870:
 	$(CC) $(CF) $(CFILES) $(INC) -lm -o bin/run_sopnucleo
 m870run:
 	./run_sopnucleo hsp70atp.pdb Contact_map_intra_b_70atp 1
+m870test:
+	$(CC) $(CF) $(CFILES) $(INC) -lm -o test/run_sopnucleo_test
 m870dev:
-	$(CC) $(CFDEV) $(CFILES) $(INC) -lm -o test/run_sopnucleo_dev
+	$(CC) $(CFDEV) $(CFILES) $(INC) -DEH_REDEFINE -lm -o test/run_sopnucleo_dev
 	cd test && mkdir -p Struct_data Coord
 	cd test && ./run_sopnucleo_dev hsp70atpmod.pdb Contact_map_hsp70total 175
+m870dev2:
+	$(CC) $(CFDEV) $(CFILES) $(INC) -lm -o test/run_sopnucleo_dev
+	cd test && mkdir -p Struct_data Coord
+	cd test && ./run_sopnucleo_dev atp4b393.pdb hsp70_peptidelinker_4b3934e_mod4b_emol.top 183
+
+m870prod:
+	$(CC) $(CFF) $(CFILES) $(INC) -lm -o test/run_sopnucleo_emol
 
 # Contact_map_intra_sc_and_b_70atp
 runADP:

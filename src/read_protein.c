@@ -112,7 +112,7 @@ int read_Protein(char *filename_PRO){
   }
 
   tot_amino = i;
-  printf("%d\n",tot_amino);
+  /* printf("%d\n",tot_amino); */
   rewind(fp);
   
   Amino = malloc((tot_amino+1) * sizeof(atom));
@@ -128,7 +128,7 @@ int read_Protein(char *filename_PRO){
 
   }
 
-  printf("begin\n");
+  printf("beginning with %d amino acids. [read_protein.c]\n",tot_amino);
   i = 0;
   while(fgets(buffer,max,fp)&& (buffer[0]!='\n')){
    
