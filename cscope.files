@@ -21,4 +21,5 @@
 ./include/def_random_seeds.h
 ./include/structure.h
 ./include/def_parameters_aa.h
+./project_hsp70/4b3934e_emol/namd_equilibration.molecules_repo.hsp70peptidelinker.08merged_4b3934e_renum.4equil.4b3934e_final_state
 Makefile
