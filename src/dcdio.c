@@ -73,8 +73,8 @@ void dcd_write_header(FILE* dcd_file, char *dcd_filename, int N, int NFILE,
 
     iout = 84;
     fwrite(&iout, 4, 1, dcd_file);
-    /* sprintf(cout,"CORD"); */
-    sprintf(cout,"COR");
+    sprintf(cout,"CORD");
+    /* sprintf(cout,"COR");  FAILS */
     fwrite(&cout, 4, 1, dcd_file);
     iout = NFILE;
     fwrite(&iout, 4, 1, dcd_file);

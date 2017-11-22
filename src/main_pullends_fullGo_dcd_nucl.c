@@ -401,7 +401,6 @@ int main(int argc, char *argv[]){
     */
 
     /* LJY obtain the starting value r0 of the distance between pulled and fixed groups */
-
     rpx = Amino[pulled_bead].x ;
     rpy = Amino[pulled_bead].y ;
     rpz = Amino[pulled_bead].z ;
@@ -411,8 +410,8 @@ int main(int argc, char *argv[]){
     rfz = Amino[fixed_bead].z ;
 
     r0 = distance(rpx,rpy,rpz,rfx,rfy,rfz);
-
     printf("at begin pulling r0 = %5.3f\n", r0);
+
 
     ras_structure();
 
@@ -420,17 +419,19 @@ int main(int argc, char *argv[]){
     stepx = 0; /* index for number of steps in pulling varying between 1 and "nav" (i.e., up to the point were
                   we output the chain conformation) */
 
-    /* before the first step in pulling, initialize the dcd file */
 
     // Open DCD
+    /* before the first step in pulling, initialize the dcd file */
     char* dcd_filename = (char*)malloc(sizeof(Protein_name) + 9);
-
     sprintf(dcd_filename, "Coord/%s.dcd", Protein_name);
 
-    dcd_file = dcd_open_write(dcd_filename);
 
     //printf("Coordinates will be saved as '%s'.\n", dcd_filename);
+    dcd_file = dcd_open_write(dcd_filename);
     dcd_write_header(dcd_file, dcd_filename, tot_amino, stepsim2, nav, nav, h);
+	// CHECK HERE..
+	/* printf("fn: %s   total_amino: %d  stepsim2: %d   nav: %d   h:%lf\n", */
+	/* 	   dcd_filename, tot_amino, stepsim2, nav, nav, h); */
 
 
     // Allocate memory for temporary data
@@ -451,7 +452,6 @@ int main(int argc, char *argv[]){
 
     fclose(fout_3);
     /* fclose(fcd); */
-
     dcd_close(dcd_file);
 
     fclose(fdata);

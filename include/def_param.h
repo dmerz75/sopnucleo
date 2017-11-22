@@ -62,6 +62,7 @@
 #define zetai     80.0 /* (zeta*(1/tau_L)*(eh/temp) sets the natural time for the overdamped motion */
 
 #define numf      657  /* total number of residues in the protein */
+/* #define numf      688  /\* total number of residues in the protein *\/ */
 #define rigid       2  /* 0=rigid and static nucleotide; 1=normal nucleotide; 2=CM nucleotide (rigid but CM moves) */
 /* LJY20100318 end  */
 
